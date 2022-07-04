@@ -1,6 +1,6 @@
 import * as React from "react";
 const About: React.FC = (props) => {
-	return <section><h1>About Page</h1></section>;
+	return <main><h1>About Page</h1></main>;
 };
 
 export default About;
