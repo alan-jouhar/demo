@@ -1,0 +1,19 @@
+.Nav{
+    background: #5454dd;
+    padding: 0.5em;
+    border-radius: 5px;
+}
+.Nav-List{
+    list-style-type: none;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    gap: 0.5em;
+}
+.Nav-Item{
+}
+
+.Nav-Link{
+    text-decoration: none;
+    color: white;
+}
