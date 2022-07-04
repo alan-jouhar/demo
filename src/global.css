@@ -1,5 +1,17 @@
+@font-face {
+    font-family: 'Finlandica';
+    src: url('./assets/fonts/Finlandica-VariableFont_wght.ttf');
+    font-weight: 600;
+    font-style: normal;
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body{
+    padding: 2em;
+    font-family: 'Finlandica';
 }
