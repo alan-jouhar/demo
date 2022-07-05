@@ -14,21 +14,18 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			title: "React App",
 			template: "index.html",
 		}),
 	],
 	module: {
 		rules: [
 			{
-				test: /\.tsx?$/,
-				use: [
-					"ts-loader",
-				],
+				test: /\.tsx?$/i,
+				use: ["ts-loader"],
 				exclude: /node_modules/,
 			},
 			{
-				test: /\.jsx?$/g,
+				test: /\.jsx?$/i,
 				use: {
 					loader: "babel-loader",
 					options: {
@@ -37,13 +34,13 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.css$/g,
+				test: /\.css$/i,
 				use: ["style-loader", "css-loader"],
 			},
 			{
-				test:/\.(woff|woff2|eot|ttf|otf)$/i,
-				type:'asset/resource',
-			}
+				test: /\.(woff|woff2|eot|ttf|otf)$/i,
+				type: "asset/resource",
+			},
 		],
 	},
 
