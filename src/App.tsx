@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
-import Main from "./components/Main";
-import About from "./components/About";
+import Main from "./pages/Main"
+import About from "./pages/About"
 const App: React.FC = (props) => {
 	return (
 		<BrowserRouter>
