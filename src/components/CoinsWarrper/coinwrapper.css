@@ -1,0 +1,6 @@
+.CoinsWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    transition: all 5s linear;
+}

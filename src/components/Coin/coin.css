@@ -1,0 +1,29 @@
+.Coin {
+    padding: 5px;
+    border: 1px solid tomato;
+    border-radius: 5px; 
+}
+
+.Coin-Header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.Coin-Name{
+    font-weight: 600;
+    text-align: left;
+}
+.Coin-Name,.Coin-Price{
+    margin: 0;
+    text-align: center;
+}
+.Coin-Percent{
+    font-size: 0.8em;
+    font-style: italic;
+}
+.Coin-Price_red{
+    color: red;
+}
+
+.Coin-Price_green{
+    color: green;
+}
