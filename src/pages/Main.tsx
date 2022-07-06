@@ -5,27 +5,25 @@ import Coin from "../components/Coin/Coin";
 const Main: React.FC = (props) => {
 	const [assets, setAssets] = useState<CoinType[]>([]);
 	const [curr, setCurr] = useState<CoinType[]>([]);
-	const pricesWs = null
+
+	const fetchAssets =async () => {
+		let response = await fetch("https://api.coincap.io/v2/assets")
+		let json = response.json() as Promise<CoinResponse>
+		setAssets((await json).data)
+		setCurr((await json).data.slice(0, 9));
+	}
+
 	useEffect(() => {
-		
-		fetch("https://api.coincap.io/v2/assets")
-			.then((res) => res.json())
-			.then((d) => {
-				setAssets(d.data);
-				setCurr(d.data.slice(0, 9));
-			});
+		fetchAssets()
 	}, []);
 
 	useEffect(() => {
 		let coins = curr.map((c) => c.id).join(",");
-		console.log(coins);
-		const pricesWs = new WebSocket(
+		let pricesWs = new WebSocket(
 			`wss://ws.coincap.io/prices?assets=${coins}`
 		);
 		pricesWs.onmessage = function (msg:{data:string}) {
-			console.log(msg.data);
 			let newCurr : CoinType[] = curr.concat()
-			// console.log(Object.entries( JSON.parse( msg.data) ))
 			Object.entries( JSON.parse( msg.data)).forEach((entry) => {
 				let key = entry[0];
 				let value = entry[1] as string;
@@ -39,7 +37,14 @@ const Main: React.FC = (props) => {
 			setCurr(newCurr)
 		};
 		return () => {
-			pricesWs.close()
+			if(pricesWs.readyState === 0){
+				pricesWs.addEventListener('open',() => {
+					pricesWs.close()
+				})
+			}
+			else{
+				pricesWs.close()
+			}
 		}
 	}, [curr.length]);
 
