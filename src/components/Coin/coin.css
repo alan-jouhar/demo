@@ -16,6 +16,13 @@
     margin: 0;
     text-align: center;
 }
+.Coin-Link{
+    text-decoration: none;
+    color: black;
+}
+.Coin-Link:hover{
+    color: black;
+}
 .Coin-Percent{
     font-size: 0.8em;
     font-style: italic;

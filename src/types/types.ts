@@ -25,3 +25,6 @@ export type CoinType = {
 export type CoinResponse = {
     data:CoinType[]
 }
+export type SingleCoinReponse = {
+    data:CoinType
+}

@@ -4,6 +4,7 @@ import Nav from "./components/Nav/Nav";
 import Main from "./pages/Main";
 import About from "./pages/About";
 import Contact from './pages/Contact'
+import Assets from "./pages/Assets";
 const App: React.FC = (props) => {
 	return (
 		<BrowserRouter>
@@ -21,6 +22,9 @@ const App: React.FC = (props) => {
 					</Route>
 					<Route path="/contact">
 						<Contact />
+					</Route>
+					<Route path="/assets/:id">
+						<Assets />
 					</Route>
 					<Route path="/">
 						<Main />
