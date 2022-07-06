@@ -22,7 +22,7 @@ const Coin: React.FC<CoinProps> = ({ coin }) => {
 				)}
 			</div>
 			<div className="Coin-Body">
-				<p className="Coin-Price">{parseFloat(coin.priceUsd).toFixed(5)}</p>
+				<p className="Coin-Price">{parseFloat(coin.priceUsd).toFixed(4)}</p>
 			</div>
 		</div>
 	);
