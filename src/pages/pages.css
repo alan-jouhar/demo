@@ -1,0 +1,14 @@
+.Asset-Header{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.Asset-Property{
+    margin-bottom: 0;
+    font-weight: 600;
+    font-style: italic;
+}
+.Asset-Value{
+    font-size: 0.8em;
+    font-weight: 600;
+    text-align: center;
+}
