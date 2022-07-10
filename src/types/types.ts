@@ -10,21 +10,27 @@
 //     "changePercent24Hr": "-0.8101417214350335",
 //     "vwap24Hr": "7175.0663247679233209"
 export type CoinType = {
-    id:string,
-    rank:string,
-    symbol:string,
-    supply:string,
-    maxSupply:string,
-    marketCapUsd:string,
-    volumeUsd24Hr:string,
-    priceUsd:string,
-    changePercent24Hr:string,
-    vwap24Hr:string
-}
-
+	id: string;
+	rank: string;
+	symbol: string;
+	supply: string;
+	maxSupply: string;
+	marketCapUsd: string;
+	volumeUsd24Hr: string;
+	priceUsd: string;
+	changePercent24Hr: string;
+	vwap24Hr: string;
+};
+export type Price = {
+	priceUsd: string;
+	time: number;
+};
 export type CoinResponse = {
-    data:CoinType[]
-}
+	data: CoinType[];
+};
 export type SingleCoinReponse = {
-    data:CoinType
-}
+	data: CoinType;
+};
+export type PriceResponse = {
+	data: Price[];
+};

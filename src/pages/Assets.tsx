@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./pages.css";
 import { CoinResponse, CoinType, SingleCoinReponse } from "../types/types";
+import Graph from "../components/Graph/Graph";
 const Assets: React.FC = () => {
 	let { id } = useParams<{ id: string }>();
 	let [asset, setAsset] = useState<CoinType>({
@@ -142,6 +143,7 @@ const Assets: React.FC = () => {
 					<span>{formatString(asset.volumeUsd24Hr)}</span>
 				</div>
 			</div>
+            <Graph id={id}/>
 		</div>
 	);
 };
