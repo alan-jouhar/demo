@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, MouseEventHandler } from "react";
-import { CoinType, Price, PriceResponse } from "../../types/types";
-import funObject, { day, month, year, getIntervalFromTimeRange, renderGraph } from "./utils";
-import * as d3 from "d3";
+import React, { useState, useEffect, useRef } from "react";
+import { Price, PriceResponse } from "../../types/types";
+import funObject, { getIntervalFromTimeRange, renderGraph } from "./utils";
 import "./graph.css";
 import { TimeRanges, timeIntervals } from "../../types/types";
 const Graph: React.FC<{ id: string }> = ({ id }) => {
@@ -55,7 +54,7 @@ const Graph: React.FC<{ id: string }> = ({ id }) => {
 		var margin = { top: 10, right: 30, bottom: 30, left: 50 },
 			width = bodyWidth - margin.left - margin.right,
 			height = bodyHeight - margin.top - margin.bottom;
-		renderGraph(graphRef,margin,bodyWidth,height,width,data)
+		renderGraph(graphRef, margin, bodyWidth, height, width, data);
 	}, [data]);
 
 	return (
