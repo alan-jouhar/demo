@@ -33,8 +33,7 @@ const Graph: React.FC<{ id: string }> = ({ id }) => {
 		}
 	};
 	useEffect(() => {
-		console.log(data)
-	},[data])
+	}, [data]);
 	useEffect(() => {
 		fetchData();
 	}, [timeRange, timeInterval]);
@@ -135,9 +134,24 @@ const Graph: React.FC<{ id: string }> = ({ id }) => {
 				);
 				path.lineTo(0, 75);
 				path.closePath();
-				svg
+				// g Container
+				let tooltipContainer = svg.append("g").attr("id", "tooltipContainer");
+				// rect
+				tooltipContainer
+					.append("rect")
+					.attr("width", "50")
+					.attr("height", "40")
+					.attr("y", "0")
+					.attr("x", "0")
+					.attr("fill", "none")
+					.style("stroke", "black")
+					.attr('id','rect');
+				// text
+				tooltipContainer
 					.append("text")
 					.attr("id", "text")
+					.attr("y", "25")
+					.attr("x", "0")
 					.text(`${Math.floor(e.clientX - 10)} - ${Math.floor(e.clientY)}`);
 				svg
 					.append("path")
@@ -150,12 +164,42 @@ const Graph: React.FC<{ id: string }> = ({ id }) => {
 			let index = dateBisector(data, x.invert(e.offsetX - 50));
 			let price = data[index].priceUsd;
 			let pathData = svg.select("#toolTip").attr("d");
-			let newPath = pathData.replace(/\d+Z/,`${Math.floor(y(parseFloat(price)))}Z`)
+			let newPath = pathData.replace(
+				/\d+Z/,
+				`${Math.floor(y(parseFloat(price)))}Z`
+			);
+			let tooltipContainer = svg.select('#tooltipContainer').node() as SVGGElement
+			let rect = svg.select('#rect')
+			let tooltipContainer_box = tooltipContainer.getBBox()
+			rect.attr('width',tooltipContainer_box.width)
 			svg
 				.select("#text")
-				.text(`${parseInt(data[index].priceUsd)} - ${d3.timeFormat('%B %d, %Y    %H:%M:%S')(new Date(data[index].time))}`)
-				.attr("transform", `translate(${e.offsetX - 50},${Math.floor(y(parseFloat(price)))})`)
-			
+				.text(
+					`${parseInt(data[index].priceUsd)} - ${d3.timeFormat(
+						"%B %d, %Y    %H:%M:%S"
+					)(new Date(data[index].time))}`
+				);
+
+			svg
+				.select("#tooltipContainer")
+				.attr(
+					"transform",
+					`translate(${e.offsetX - 50},${
+						Math.floor(y(parseFloat(price))) - 50
+					})`
+				);
+			if(e.offsetX - 50 + tooltipContainer_box.width > width){
+				let diff = e.offsetX - 50 + tooltipContainer_box.width - width
+				svg
+				.select("#tooltipContainer")
+				.attr(
+					"transform",
+					`translate(${e.offsetX - 50 - diff},${
+						Math.floor(y(parseFloat(price))) - 50
+					})`
+				);
+			}
+
 			svg
 				.select("#toolTip")
 				.attr("d", newPath)
