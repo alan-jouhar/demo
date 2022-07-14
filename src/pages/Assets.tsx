@@ -98,7 +98,7 @@ const Assets: React.FC = () => {
 			<div className="Asset-Figure mb-3">
 				<img
 					className="Asset-Image"
-					src={`https://cryptoicons.org/api/icon/${asset.symbol.toLocaleLowerCase()}/200`}
+					src={`https://raw.githubusercontent.com/condacore/cryptocurrency-icons/master/128x128/${asset.id.toLocaleLowerCase()}.png`}
 				/>
 				<div className="text-end">
 					<p className="Asset-Title">24H %</p>

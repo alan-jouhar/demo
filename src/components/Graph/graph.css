@@ -1,0 +1,28 @@
+.Graph-Controls-Wrapper {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+    position: relative;
+    border: 1px solid tomato;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.Graph-Slider {
+    position: absolute;
+    background-color: transparent;
+    border-radius: 3px;
+    height: calc(100% - 10px);
+    z-index: -1;
+    left: 10px;
+    top: 5px;
+    transition: all 0.3s linear;
+    background-color: #cce5df;
+}
+
+.Graph-Control,
+.Graph-Slider {
+    min-width: 60px;
+    text-align: center;
+    cursor: pointer;
+}

@@ -34,3 +34,5 @@ export type SingleCoinReponse = {
 export type PriceResponse = {
 	data: Price[];
 };
+export type TimeRanges = "day" | "week" | "month" | "year" | "max";
+export type timeIntervals = "m1" | "m15" | "h1" | "h6" | "d1";
