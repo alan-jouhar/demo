@@ -68,15 +68,15 @@ const Assets: React.FC = () => {
 	return (
 		<div className="Asset mt-3">
 			<div className="Asset-Header mb-3">
-				<div>
+				<div className="Asset-Name">
 					<p className="Asset-Property">Name</p>
 					<span className="Asset-Value">{asset.id.toLocaleUpperCase()}</span>
 				</div>
-				<div>
+				<div className="Asset-Rank">
 					<p className="Asset-Property">Rank</p>
 					<span className="Asset-Value">{asset.rank}</span>
 				</div>
-				<div>
+				<div className="Asset-Symbol">
 					<p className="Asset-Property">Symbol</p>
 					<span className="Asset-Value">{asset.symbol}</span>
 				</div>

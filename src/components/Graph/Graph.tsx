@@ -50,7 +50,7 @@ const Graph: React.FC<{ id: string }> = ({ id }) => {
 				window.getComputedStyle(document.body).getPropertyValue("padding")
 			) *
 				2;
-		let bodyHeight = bodyWidth * 0.75;
+		let bodyHeight = bodyWidth * 0.3;
 		var margin = { top: 10, right: 30, bottom: 30, left: 50 },
 			width = bodyWidth - margin.left - margin.right,
 			height = bodyHeight - margin.top - margin.bottom;

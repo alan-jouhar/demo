@@ -85,8 +85,16 @@ export const renderGraph = function (
 	svg
 		.append("g")
 		.attr("transform", "translate(0," + height + ")")
-		.call(d3.axisBottom(x).ticks(5))
-		.selectAll(".tick");
+		.call(d3.axisTop(x).ticks(5).tickSize(height))
+		.call((g) => g.select(".domain").remove())
+		.call((g) =>
+			g
+				.selectAll(".tick line")
+				.attr("stroke-opacity", 0.5)
+				.attr("stroke-dasharray", "2,2")
+		)
+
+		.call((g) => g.selectAll(".tick text").attr("y", "10"));
 
 	// Add Y axis
 	var y = d3
@@ -97,17 +105,25 @@ export const renderGraph = function (
 		])
 		.range([height, 0]);
 
-	svg.append("g").call(d3.axisLeft(y));
+	svg
+		.append("g")
+		.call(d3.axisRight(y).tickSize(width))
+		.call((g) => g.select(".domain").remove())
+		.call((g) =>
+			g
+				.selectAll(".tick line")
+				.attr("stroke-opacity", 0.5)
+				.attr("stroke-dasharray", "2,2")
+		)
+
+		.call((g) => g.selectAll(".tick text").attr("x", -40).attr("dy", -4));
 
 	// Add the gradient
 	let gradient = svg.append("defs").append("linearGradient");
 	gradient.attr("id", "grdient");
 	gradient.attr("x1", 0).attr("x2", 0).attr("y1", 0).attr("y2", 1);
-	gradient.append("stop").attr("offset", "0%").attr("stop-color", "#198754");
-	gradient
-		.append("stop")
-		.attr("offset", "100%")
-		.attr("stop-color", "#19875423");
+	gradient.append("stop").attr("offset", "0%").attr("stop-color", "#19875423");
+	gradient.append("stop").attr("offset", "100%").attr("stop-color", "white");
 	// Add the area
 	svg
 		.append("path")
@@ -116,8 +132,6 @@ export const renderGraph = function (
 		)
 		.attr("id", "path")
 		.attr("fill", "url(#grdient)")
-		.attr("stroke", "#198754")
-		.attr("stroke-width", 1)
 		.attr(
 			"d",
 			d3
@@ -127,6 +141,26 @@ export const renderGraph = function (
 				})
 				.y0(y(d3.min(data, (d) => parseFloat(d.priceUsd) * 0.995) as number))
 				.y1(function (d) {
+					return y(d[1]);
+				})
+		);
+	// Add the line
+	svg
+		.append("path")
+		.datum(
+			data.map((e) => [e.time, parseFloat(e.priceUsd)] as [number, number])
+		)
+		.attr("fill", "none")
+		.attr("stroke", "#5454dd")
+		.attr("stroke-width", 1)
+		.attr(
+			"d",
+			d3
+				.line()
+				.x(function (d) {
+					return x(d[0]);
+				})
+				.y(function (d) {
 					return y(d[1]);
 				})
 		);

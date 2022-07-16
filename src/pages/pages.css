@@ -15,7 +15,13 @@
     text-align: center;
 }
 
-.Asset-Price {}
+.Asset-Rank {
+    text-align: center;
+}
+
+.Asset-Symbol{
+    text-align: right;
+}
 
 .Asset-Sign {
     font-size: 0.5em;
