@@ -10,7 +10,7 @@ const Main: React.FC = (props) => {
 		let response = await fetch("https://api.coincap.io/v2/assets")
 		let json = response.json() as Promise<CoinResponse>
 		setAssets((await json).data)
-		setCurr((await json).data.slice(0, 9));
+		setCurr((await json).data.slice(0, 15));
 	}
 
 	useEffect(() => {
@@ -49,7 +49,7 @@ const Main: React.FC = (props) => {
 	}, [curr.length]);
 
 	return (
-		<main className="mt-3">
+		<main className="mt-3 text-center">
 			<CoinsWrapper>
 				{curr.map((coin) => (
 					<Coin coin={coin} key={coin.id} />
@@ -57,9 +57,9 @@ const Main: React.FC = (props) => {
 			</CoinsWrapper>
 			{curr.length < assets.length && (
 				<button
-					className="mt-3 btn btn-primary btn-lg btn-block w-100"
+					className="mt-3 btn btn-primary btn-lg btn-block"
 					onClick={() =>
-						setCurr((c) => c.concat(assets.slice(c.length, c.length + 9)))
+						setCurr((c) => c.concat(assets.slice(c.length, c.length + 15)))
 					}
 				>
 					Load More

@@ -18,3 +18,15 @@ body{
 .main{
 
 }
+
+
+
+@media only screen and (min-width : 600px) {
+   
+}
+
+@media only screen and (min-width : 768px) {
+    body{
+        padding: 1em 3em;
+    }
+}
